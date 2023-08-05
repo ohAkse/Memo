@@ -10,11 +10,14 @@ import RxSwift
 import RxCocoa
 class DefaultViewController: UIViewController,  ViewModelBindableType {
     
+    @IBOutlet weak var memoListButton: UIButton!
+    @IBOutlet weak var completeListButton: UIButton!
     var viewModel: DefaultViewModel!
     
     func bindViewModel() {
+     //   memoListButton.rx.action = viewModel.makeCreateAction()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }

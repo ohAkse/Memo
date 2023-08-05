@@ -55,6 +55,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="l8a-mo-2aB"/>
+                    <connections>
+                        <outlet property="completeListButton" destination="Y50-NU-ISb" id="8W1-nu-h9B"/>
+                        <outlet property="memoListButton" destination="22f-8x-jqW" id="HXY-5n-Gdv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
