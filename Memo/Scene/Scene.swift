@@ -23,28 +23,32 @@ extension Scene{
         
         switch self {
         case .defaultVM(let DefaultViewModel):
-            //let nav1 = storyboard.instantiateViewController(withIdentifier: "DefaultVC")
             if let nav = storyboard.instantiateViewController(withIdentifier: "DefaultNavi") as? UINavigationController
             {
-                
                 guard var defaultVC = nav.viewControllers.first as? DefaultViewController else { fatalError() }
                 defaultVC.bind(viewModel: DefaultViewModel)
                 return nav
             }
-            print("추가구현")
             return UIViewController()
         case .listVM(let MemoListViewModel):
-            print("추가구현")
-            return UIViewController()
+            guard var listlVC = storyboard.instantiateViewController(withIdentifier: "MemoListVC") as? MemoListViewController else { fatalError() }
+            listlVC.bind(viewModel: MemoListViewModel)
+            return listlVC
         case .detailVM(let MemoDetailViewModel):
-            print("추가구현")
-            return UIViewController()
+            guard var detailView = storyboard.instantiateViewController(withIdentifier: "MemoDetailVC") as?
+            MemoDetailViewController else { fatalError() }
+            detailView.bind(viewModel: MemoDetailViewModel)
+            return detailView
         case .addVM(let MemoAddViewModel):
-            print("추가구현")
-            return UIViewController()
+            guard var addVC = storyboard.instantiateViewController(withIdentifier: "MemoAddVC") as?
+            MemoAddViewController else { fatalError() }
+            addVC.bind(viewModel: MemoAddViewModel)
+            return addVC
         case .completeVM(let MemoCompleteViewModel):
-            print("추가구현")
-            return UIViewController()
+            guard var completelVC = storyboard.instantiateViewController(withIdentifier: "MemoCompleteVC") as?
+            MemoCompleteViewController else { fatalError() }
+            completelVC.bind(viewModel: MemoCompleteViewModel)
+            return completelVC
             
         }
     }

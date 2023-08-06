@@ -8,14 +8,16 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxDataSources
 class DefaultViewController: UIViewController,  ViewModelBindableType {
-    
     @IBOutlet weak var memoListButton: UIButton!
-    @IBOutlet weak var completeListButton: UIButton!
+    @IBOutlet weak var memoCompleteButton: UIButton!
     var viewModel: DefaultViewModel!
     
     func bindViewModel() {
-     //   memoListButton.rx.action = viewModel.makeCreateAction()
+        memoListButton.rx.action = viewModel.makeMemoListMoveAction()
+        memoCompleteButton.rx.action = viewModel.makeMemoCompleteMoveAction()
+        
     }
 
     override func viewDidLoad() {

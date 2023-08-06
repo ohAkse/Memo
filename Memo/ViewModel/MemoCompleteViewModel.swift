@@ -6,7 +6,15 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
+import Action
+import RxDataSources
 class MemoCompleteViewModel: CommonViewModel{
     
-    
+    func makeMemoBackMoveAction() -> CocoaAction{
+        return CocoaAction{ _ in
+            return self.sceneCoordinator.close(animated: true).asObservable().map{ _ in }
+        }
+    }
 }

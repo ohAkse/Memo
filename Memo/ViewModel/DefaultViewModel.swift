@@ -10,16 +10,25 @@ import RxSwift
 import RxCocoa
 import Action
 class DefaultViewModel: CommonViewModel{
-//    func makeCreateAction() -> CocoaAction{
-//        return CocoaAction{ _ in
-//            return self.storage.createMemo(content: "")
-//                .flatMap{ memo -> Observable<Void> in
-//                    let composeViewModel = MemoComposeViewModel(title: "새 메모", sceneCoordinator: self.sceneCoordinator, storage: self.storage, saveAction: self.performUpdate(memo: memo), cancelAction: self.performCancel(memo: memo))
-//                        
-//                    let composeScene = Scene.compose(composeViewModel)
-//                    return self.sceneCoordinator.transition(to: composeScene, using: .modal, animated: true).asObservable().map{ _ in}
-//                }
-//        }
-//        
-//    }
+
+    func makeMemoListMoveAction() -> CocoaAction{
+        return CocoaAction{ _ in
+            
+            let memoListViewModel = MemoListViewModel(title: "메모장ㅇ", sceneCoordinator: self.sceneCoordinator, storage: self.storage)
+            let ListScene = Scene.listVM(memoListViewModel)
+            return self.sceneCoordinator.transition(to: ListScene, using: .modal, animated: true).asObservable().map{ _ in}
+            //modal로 해도 Defulat로 설정돼서 나오는 이유가?
+        }
+    }
+    
+    func makeMemoCompleteMoveAction() -> CocoaAction{
+        return CocoaAction{ _ in
+            
+            let memoCompleteViewModel = MemoCompleteViewModel(title: "완료페이지ㅇ", sceneCoordinator: self.sceneCoordinator, storage: self.storage)
+            let CompleteScene = Scene.completeVM(memoCompleteViewModel)
+            return self.sceneCoordinator.transition(to: CompleteScene, using: .modal, animated: true).asObservable().map{ _ in}
+            //TODO modal로 했을때 안바뀌는이유와 title이 안바뀌는이유-> title도 initialText로 세팅해줘야함..
+        }
+    }
+
 }

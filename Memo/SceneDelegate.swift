@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import CoreData
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -14,8 +14,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _windowscene = (scene as? UIWindowScene) else { return }
+        let storage = CoreDataStorage(modelName: "RxMemo")
         let coordinator = SceneCoordinator(window: window!)
-        let listViewModel = DefaultViewModel(title: "나의메모", sceneCoordinator: coordinator)
+        let listViewModel = DefaultViewModel(title: "나의메모", sceneCoordinator: coordinator, storage: storage)
         let listScene = Scene.defaultVM(listViewModel)
         coordinator.transition(to: listScene, using: .root, animated: false)
         guard let _ = (scene as? UIWindowScene) else { return }

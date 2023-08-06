@@ -6,8 +6,25 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import NSObject_Rx
+class MemoAddViewController: UIViewController, ViewModelBindableType {
+    
+    
+    var viewModel: MemoAddViewModel!
+    
+    func bindViewModel() {
+//        viewModel.title.drive(navigationItem.rx.title).disposed(by:  rx.disposeBag)
 
-class MemoAddViewController: UIViewController {
+        cancelButton.rx.action = viewModel.makeMemoCancelMoveAction()
+        
+        confirmButton.rx.action = viewModel.makeMemoPerformUpdateAction()
+        
+    }
+    
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var confirmButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

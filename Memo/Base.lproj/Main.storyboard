@@ -56,7 +56,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="l8a-mo-2aB"/>
                     <connections>
-                        <outlet property="completeListButton" destination="Y50-NU-ISb" id="8W1-nu-h9B"/>
+                        <outlet property="memoCompleteButton" destination="Y50-NU-ISb" id="jCG-U1-MPl"/>
                         <outlet property="memoListButton" destination="22f-8x-jqW" id="HXY-5n-Gdv"/>
                     </connections>
                 </viewController>
@@ -76,12 +76,8 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                                 <items>
                                     <navigationItem title="메모장" id="DsD-25-G4J">
-                                        <barButtonItem key="rightBarButtonItem" title="추가" id="jJb-i2-O6W" userLabel="추가">
-                                            <connections>
-                                                <action selector="addMemo:" destination="LhN-RC-52D" id="A3l-7q-DV1"/>
-                                                <segue destination="wkf-gO-IEd" kind="show" id="oFF-K3-9Xy"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <barButtonItem key="leftBarButtonItem" title="이전" id="Pym-qS-GtO"/>
+                                        <barButtonItem key="rightBarButtonItem" title="추가" id="jJb-i2-O6W" userLabel="추가"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -99,6 +95,12 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKZ-Ff-nbM">
+                                <rect key="frame" x="50" y="777" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Button"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BTR-ZM-fw9"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -117,17 +119,19 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addButton" destination="jJb-i2-O6W" id="gHU-Er-0Vx"/>
+                        <outlet property="backButton" destination="Pym-qS-GtO" id="ynR-f7-bgb"/>
+                        <outlet property="testButton" destination="ZKZ-Ff-nbM" id="vJg-sY-NAL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y0m-EP-vQV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2606.8702290076335" y="16.901408450704228"/>
+            <point key="canvasLocation" x="3447" y="17"/>
         </scene>
         <!--Memo Complete View Controller-->
         <scene sceneID="svi-em-Zca">
             <objects>
                 <viewController storyboardIdentifier="MemoCompleteVC" id="7eX-YD-Jc0" customClass="MemoCompleteViewController" customModule="Memo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4V7-OQ-DLM">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="MemoCompleteVC" id="4V7-OQ-DLM">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -164,6 +168,9 @@
                             <constraint firstItem="Adp-Oq-uo8" firstAttribute="bottom" secondItem="nYd-SA-4FU" secondAttribute="bottom" constant="103" id="xA7-PL-ybv"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="BackButton" destination="74e-QQ-1Xd" id="3kU-rD-gTS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XfP-LJ-ZUW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -182,7 +189,6 @@
                                 <items>
                                     <navigationItem title="메모 상세" id="bfi-AY-hbV">
                                         <barButtonItem key="leftBarButtonItem" title="이전" id="Yx8-MM-NdC"/>
-                                        <barButtonItem key="rightBarButtonItem" title="완료" id="DDo-pt-lFZ" userLabel="완료"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -209,12 +215,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="Z6X-XK-7md"/>
                     <connections>
+                        <outlet property="backButton" destination="Yx8-MM-NdC" id="Oti-Ko-Hc1"/>
                         <outlet property="textView" destination="0mr-6j-S2n" id="Ydq-TQ-mXg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EDt-Nc-Jhn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2616.030534351145" y="738.73239436619724"/>
+            <point key="canvasLocation" x="3456" y="739"/>
         </scene>
         <!--Memo Add View Controller-->
         <scene sceneID="VsG-XC-Ndw">
@@ -254,10 +261,14 @@
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="55s-iG-RAY" id="oOr-bM-HpD"/>
+                        <outlet property="confirmButton" destination="8KK-Hb-Mut" id="Upz-z1-t6v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0T-zX-Lyk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3487.7862595419847" y="16.901408450704228"/>
+            <point key="canvasLocation" x="4327" y="17"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="iE7-5S-LwV">
