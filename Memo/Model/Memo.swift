@@ -31,7 +31,7 @@ struct Memo : Equatable, IdentifiableType{
 
 extension Memo: Persistable{
     public static var entityName: String{
-        return "Memo"
+        return "MemoData"
     }
     
     static var primaryAttributeName: String{

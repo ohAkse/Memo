@@ -23,13 +23,10 @@ extension Scene{
         
         switch self {
         case .defaultVM(let DefaultViewModel):
-            if let nav = storyboard.instantiateViewController(withIdentifier: "DefaultNavi") as? UINavigationController
-            {
-                guard var defaultVC = nav.viewControllers.first as? DefaultViewController else { fatalError() }
-                defaultVC.bind(viewModel: DefaultViewModel)
-                return nav
-            }
-            return UIViewController()
+            guard let nav = storyboard.instantiateViewController(withIdentifier: "DefaultNavi") as? UINavigationController else { fatalError() }
+            guard var defaultVC = nav.viewControllers.first as? DefaultViewController else { fatalError() }
+            defaultVC.bind(viewModel: DefaultViewModel)
+            return nav
         case .listVM(let MemoListViewModel):
             guard var listlVC = storyboard.instantiateViewController(withIdentifier: "MemoListVC") as? MemoListViewController else { fatalError() }
             listlVC.bind(viewModel: MemoListViewModel)
@@ -40,10 +37,10 @@ extension Scene{
             detailView.bind(viewModel: MemoDetailViewModel)
             return detailView
         case .addVM(let MemoAddViewModel):
-            guard var addVC = storyboard.instantiateViewController(withIdentifier: "MemoAddVC") as?
-            MemoAddViewController else { fatalError() }
+            guard let nav = storyboard.instantiateViewController(withIdentifier: "addNavi") as? UINavigationController else { fatalError() }
+            guard var addVC = nav.viewControllers.first as? MemoAddViewController else { fatalError() }
             addVC.bind(viewModel: MemoAddViewModel)
-            return addVC
+            return nav
         case .completeVM(let MemoCompleteViewModel):
             guard var completelVC = storyboard.instantiateViewController(withIdentifier: "MemoCompleteVC") as?
             MemoCompleteViewController else { fatalError() }

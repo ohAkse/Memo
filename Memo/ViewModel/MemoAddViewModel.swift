@@ -11,17 +11,33 @@ import RxCocoa
 import Action
 class MemoAddViewModel: CommonViewModel{
     
-    func makeMemoCancelMoveAction() -> CocoaAction{
-        return CocoaAction{ _ in
-            return self.sceneCoordinator.close(animated: true).asObservable().map{ _ in }
-        }
+    private let content: String?
+    
+    var initialText: Driver<String?>{
+        return Observable.just(content).asDriver(onErrorJustReturn: nil)
     }
     
-    func makeMemoPerformUpdateAction() -> CocoaAction {
-        return Action { input in
-            let memo = Memo(content: "", insertDate: Date())
-            //self.storage.update(memo: memo, content: "")
-            return self.sceneCoordinator.close(animated: true).asObservable().map { _ in }
+    let confirmAction: Action<String, Void>
+    let cancelAction: CocoaAction
+    
+    init(title: String, content: String? = nil, sceneCoordinator: SceneCoordinatorType, storage: MemoStorageType, confirmAction: Action<String, Void>? = nil, cancelAction: CocoaAction? = nil){
+        self.content = content
+        self.confirmAction = Action<String, Void>{ input in
+            print(input)
+            storage.createMemo(content: input)
+            if let action = confirmAction{
+                storage.createMemo(content: input)
+                action.execute(input)
+            }
+            return sceneCoordinator.close(animated: true).asObservable().map{ _ in }
         }
+        
+        self.cancelAction = CocoaAction{
+            if let action = cancelAction{
+                action.execute(())
+            }
+            return sceneCoordinator.close(animated: true).asObservable().map{ _ in }
+        }
+        super.init(title: title, sceneCoordinator: sceneCoordinator, storage: storage)
     }
 }
