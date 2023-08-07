@@ -5,19 +5,40 @@
 //  Created by 박유경 on 2023/08/06.
 //
 
-import UIKit
-
+import Foundation
+import RxSwift
+import RxCocoa
+import Action
+import RxDataSources
 class CustomCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    @IBOutlet weak var contentLb: UILabel!
+    @IBOutlet weak var switchBtn: UISwitch!
+    var disposeBag = DisposeBag()
+//    lazy var switchButton: UISwitch = {
+//        let switchbutton = UISwitch(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+//        switchbutton.contentMode = .scaleAspectFit
+//        return switchbutton
+//    }()
+//
+//    //이름
+//    lazy var contentLabel: UILabel = {
+//        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+//        label.textAlignment = .left
+//        return label
+//    }()
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+//    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+//        super.init(style: style, reuseIdentifier: reuseIdentifier)
+//        commonInit()
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//        commonInit()
+//    }
 
-        // Configure the view for the selected state
-    }
+      
 
 }
+

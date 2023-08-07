@@ -20,12 +20,12 @@ class MemoListViewController: UIViewController, ViewModelBindableType {
     var viewModel: MemoListViewModel!
     
     func bindViewModel() {
-        
+        listTableView.register(CustomCell.self, forCellReuseIdentifier: "CustomCell")
+
         viewModel.memoList
             .subscribe(onNext: { memoSections in
                 for section in memoSections {
                     for item in section.items {
-                        print("Memo Content: \(item.content)")
                     }
                 }
             })
@@ -34,7 +34,24 @@ class MemoListViewController: UIViewController, ViewModelBindableType {
         viewModel.memoList
             .bind(to: self.listTableView.rx.items(dataSource: viewModel.dataSource))
             .disposed(by: rx.disposeBag)
+       
         
+
+        
+        
+//        Observable.zip(listTableView.rx.modelSelected(Memo.self), listTableView.rx.itemSelected)
+//            .do(onNext: {[unowned self] (_, indexPath) in
+//                self.listTableView.deselectRow(at: indexPath, animated: true)
+//            })
+//                .map{$0.0}
+//                .bind(to: viewModel.co.inputs)
+//                .disposed(by: rx.disposeBag)
+//
+//
+//
+//        listTableView.rx.modelDeleted(Memo.self)
+//            .bind(to: viewModel.deleteAction.inputs)
+//            .disposed(by: rx.disposeBag)
         
         
         backButton.rx.action = viewModel.makeMemoBackMoveAction()
@@ -46,9 +63,4 @@ class MemoListViewController: UIViewController, ViewModelBindableType {
         super.viewDidLoad()
 
     }
-
-    
-    
-    
-
 }

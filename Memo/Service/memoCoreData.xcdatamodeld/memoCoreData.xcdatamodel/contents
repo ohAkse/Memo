@@ -4,5 +4,6 @@
         <attribute name="content" optional="YES" attributeType="String"/>
         <attribute name="identity" optional="YES" attributeType="String"/>
         <attribute name="insertDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="switchIsOn" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
 </model>

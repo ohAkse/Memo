@@ -55,8 +55,6 @@ class CoreDataStorage: MemoStorageType{
     func memoList() -> Observable<[MemoSectionModel]> {
         return mainContext.rx.entities(Memo.self, sortDescriptors: [NSSortDescriptor(key: "insertDate", ascending: false)])
             .map{results in [MemoSectionModel(model: 0, items: results)]}
-        
-        
     }
     
     @discardableResult

@@ -13,11 +13,13 @@ struct Memo : Equatable, IdentifiableType{
     var content: String
     var insertDate: Date
     var identity: String
+    var switchIsOn : Bool
     
     init(content: String, insertDate: Date = Date()){
         self.content = content
         self.insertDate = insertDate
         self.identity = "\(insertDate.timeIntervalSinceReferenceDate)"
+        self.switchIsOn = false
     }
     
     
@@ -41,8 +43,8 @@ extension Memo: Persistable{
     init(entity: NSManagedObject){
         content = entity.value(forKey: "content") as! String
         insertDate = entity.value(forKey: "insertDate") as! Date
-        
-        identity = "\(insertDate.timeIntervalSinceReferenceDate)"
+        identity =  entity.value(forKey: "identity") as! String
+        switchIsOn =  entity.value(forKey: "switchIsOn") as! Bool
         
     }
     
@@ -50,6 +52,7 @@ extension Memo: Persistable{
         entity.setValue(content, forKey: "content")
         entity.setValue(insertDate, forKey: "insertDate")
         entity.setValue("\(insertDate.timeIntervalSinceReferenceDate)", forKey: "identity")
+        entity.setValue(switchIsOn, forKey: "switchIsOn")
         
         do{
             try entity.managedObjectContext?.save()
