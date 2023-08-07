@@ -20,52 +20,51 @@ class MemoListViewModel: CommonViewModel{
         return storage.memoList()
     }
     var saveOrDeleteAction: Action<Bool, Void>?
-
-    init(title: String, sceneCoordinator: SceneCoordinatorType, storage: MemoStorageType, saveOrDeleteAction: Action<Bool, Void>? = nil ){
-        self.saveOrDeleteAction = saveOrDeleteAction
-        self.saveOrDeleteAction = Action<Bool, Void>{ isSwitched in
-            print(isSwitched)
-            //storage.createMemo(content: input)
-            if let action = saveOrDeleteAction{
-                //storage.createMemo(content: input)
-                action.execute(isSwitched)
-            }
-            return sceneCoordinator.close(animated: true).asObservable().map{ _ in }
-        }
-        super.init(title: title, sceneCoordinator: sceneCoordinator, storage: storage)
-    }
+    
+    var dataSource: RxTableViewSectionedAnimatedDataSource<MemoSectionModel>
     
     
-    let dataSource : RxTableViewSectionedAnimatedDataSource<MemoSectionModel> = {
-        let ds = RxTableViewSectionedAnimatedDataSource<MemoSectionModel>(configureCell: {
-            dataSource, tableView, indexPath, memo -> UITableViewCell in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath)
-            if let customCell = cell as? CustomCell {
-                customCell.contentLb.text = memo.content
-                customCell.switchBtn.isOn = memo.switchIsOn
-                customCell.switchBtn.rx.isOn
-                    .map { isOn ->  [NSAttributedString.Key: Any] in
-                        if isOn {
-                            //print("on")
-                            return [.underlineStyle: NSUnderlineStyle.single.rawValue]
-                        } else {
-                            //print("off")
-                            return [:]
-                        }
-                    }
-                    .map { attributes -> NSAttributedString in
-                        let attributeString = NSAttributedString(string: memo.content, attributes: attributes)
-                        return attributeString
-                    }
-                    .bind(to: customCell.contentLb.rx.attributedText)
-                    .disposed(by: customCell.disposeBag)
-                return customCell
-            }
-            return CustomCell()
-        })
-        return ds
-    }()
+    init(title: String, sceneCoordinator: SceneCoordinatorType, storage: MemoStorageType, saveOrDeleteAction: Action<Bool, Void>? = nil) {
+         self.saveOrDeleteAction = saveOrDeleteAction
+   
+         dataSource = RxTableViewSectionedAnimatedDataSource<MemoSectionModel> { dataSource, tableView, indexPath, memo -> UITableViewCell in
+   
+             let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath)
+             if let customCell = cell as? CustomCell {
+                 customCell.contentLb.text = memo.content
+                 customCell.switchBtn.isOn = memo.switchIsOn
+                 customCell.switchBtn.rx.isOn.distinctUntilChanged()
+                     .subscribe(onNext: { isOn in
+                         if isOn {
+                             // 스위치가 ON인 경우
+                             print("On? -> \(isOn)")
+                             let attributedText = NSAttributedString(
+                                 string: memo.content,
+                                 attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue]
+                             )
+                             customCell.contentLb.attributedText = attributedText
+                             let attributeString = NSMutableString(string: memo.content)
+                         } else {
+                             // 스위치가 OFF인 경우
+                             print("off? -> \(isOn)")
+                             let attributedText = NSAttributedString(string: memo.content)
+                             customCell.contentLb.attributedText = attributedText
+                         }
+                         storage.update(memo: memo, content: memo.content, isSwitched: isOn)
+                     })
+                     .disposed(by: customCell.disposeBag)
+                 
+                 
+                 return customCell
+             }
+             return CustomCell()
+         }
+         
+         super.init(title: title, sceneCoordinator: sceneCoordinator, storage: storage)
+     }
+     
     
+    var customCell: CustomCell? // 셀을 저장하는 프로퍼티
     
     func makeMemoAddeMoveAction() -> CocoaAction{
         return CocoaAction{ _ in
@@ -90,4 +89,17 @@ class MemoListViewModel: CommonViewModel{
         }
     }
     
+}
+extension UILabel {
+    func strikethroughAndChangeLineColor(from text: String?, at range: String?) {
+        guard let text = text,
+              let range = range else { return }
+        
+        let attributedString = NSMutableAttributedString(string: text)
+        attributedString.addAttributes([
+            NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue,
+            NSAttributedString.Key.strikethroughColor: UIColor.red
+        ], range: NSString(string: text).range(of: range))
+        self.attributedText = attributedString
+    }
 }

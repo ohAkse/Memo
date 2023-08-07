@@ -15,17 +15,23 @@ struct Memo : Equatable, IdentifiableType{
     var identity: String
     var switchIsOn : Bool
     
-    init(content: String, insertDate: Date = Date()){
+    init(content: String, insertDate: Date = Date(), switchIsOn : Bool){
         self.content = content
         self.insertDate = insertDate
         self.identity = "\(insertDate.timeIntervalSinceReferenceDate)"
-        self.switchIsOn = false
+        self.switchIsOn = switchIsOn
     }
     
     
     init(original: Memo, updatedContent: String){
         self = original
         self.content = updatedContent
+    }
+    
+    init(original: Memo, updatedContent: String, switchIsOn : Bool){
+        self = original
+        self.content = updatedContent
+        self.switchIsOn = switchIsOn
     }
     
 }

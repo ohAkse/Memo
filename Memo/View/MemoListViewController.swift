@@ -22,21 +22,26 @@ class MemoListViewController: UIViewController, ViewModelBindableType {
     func bindViewModel() {
         listTableView.register(CustomCell.self, forCellReuseIdentifier: "CustomCell")
 
-        viewModel.memoList
-            .subscribe(onNext: { memoSections in
-                for section in memoSections {
-                    for item in section.items {
-                    }
-                }
-            })
-            .disposed(by: rx.disposeBag)
+//        viewModel.memoList
+//            .subscribe(onNext: { memoSections in
+//                //print(memoSections)
+//                for section in memoSections {
+//                    for item in section.items {
+//                    }
+//                }
+//            })
+//            .disposed(by: rx.disposeBag)
         
         viewModel.memoList
             .bind(to: self.listTableView.rx.items(dataSource: viewModel.dataSource))
             .disposed(by: rx.disposeBag)
-       
         
 
+//        viewModel.memoList
+//            .bind(to: self.listTableView.rx.items(dataSource: viewModel.dataSource))
+//            .disposed(by: rx.disposeBag)
+        
+        
         
         
 //        Observable.zip(listTableView.rx.modelSelected(Memo.self), listTableView.rx.itemSelected)

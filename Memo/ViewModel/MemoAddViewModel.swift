@@ -23,10 +23,8 @@ class MemoAddViewModel: CommonViewModel{
     init(title: String, content: String? = nil, sceneCoordinator: SceneCoordinatorType, storage: MemoStorageType, confirmAction: Action<String, Void>? = nil, cancelAction: CocoaAction? = nil){
         self.content = content
         self.confirmAction = Action<String, Void>{ input in
-            print(input)
             storage.createMemo(content: input)
             if let action = confirmAction{
-                storage.createMemo(content: input)
                 action.execute(input)
             }
             return sceneCoordinator.close(animated: true).asObservable().map{ _ in }
