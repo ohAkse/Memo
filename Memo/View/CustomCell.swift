@@ -14,8 +14,8 @@ class CustomCell: UITableViewCell {
     @IBOutlet weak var contentLb: UILabel!
     @IBOutlet weak var switchBtn: UISwitch!
     @IBOutlet weak var comletedText: UILabel!
-    let sharedInstance = MemoManager.Instance
-    
+    let sharedInstance = RealmManager.Instance
+
     override func prepareForReuse() {
         super.prepareForReuse()        
         contentLb.attributedText = nil

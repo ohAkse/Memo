@@ -3,4 +3,69 @@
    uuid = "0417FF0F-22FF-4B45-B73B-7B8DB193B44C"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "46B66592-4CE3-4380-A57D-EB21AE3F3448"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Memo/Model/Memo.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "init(content:insertDate:switchIsOn:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "46B66592-4CE3-4380-A57D-EB21AE3F3448 - e481faff74a586e3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Memo.Memo.init(content: Swift.String, insertDate: Foundation.Date, switchIsOn: Swift.Bool) -&gt; Memo.Memo"
+                  moduleName = "Memo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/segassdc/Memo/Memo/Memo/Model/Memo.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "468">
+               </Location>
+               <Location
+                  uuid = "46B66592-4CE3-4380-A57D-EB21AE3F3448 - e481faff74a58602"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Memo.Memo.init(content: Swift.String, insertDate: Foundation.Date, switchIsOn: Swift.Bool) -&gt; Memo.Memo"
+                  moduleName = "Memo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/segassdc/Memo/Memo/Memo/Model/Memo.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "704">
+               </Location>
+               <Location
+                  uuid = "46B66592-4CE3-4380-A57D-EB21AE3F3448 - e481faff74a58602"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Memo.Memo.init(content: Swift.String, insertDate: Foundation.Date, switchIsOn: Swift.Bool) -&gt; Memo.Memo"
+                  moduleName = "Memo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/segassdc/Memo/Memo/Memo/Model/Memo.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "684">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

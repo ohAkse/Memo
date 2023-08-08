@@ -17,7 +17,12 @@ class MemoAddViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var confirmButton: UIBarButtonItem!
+    @IBOutlet weak var confirmButtonClicked: UINavigationItem!
     weak var CreateDelegate : CreateMemoDelegate?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
     @IBAction func ConfirmButtonClicked(_ sender: Any) {
         
@@ -33,9 +38,5 @@ class MemoAddViewController: UIViewController {
     }
     @IBAction func CancelButtonClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-    }
-    @IBOutlet weak var confirmButtonClicked: UINavigationItem!
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
 }

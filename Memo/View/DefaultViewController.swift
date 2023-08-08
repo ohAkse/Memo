@@ -27,8 +27,6 @@ class DefaultViewController: UIViewController {
               self.navigationController?.pushViewController(nextViewController, animated: true)
           }
     }
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }

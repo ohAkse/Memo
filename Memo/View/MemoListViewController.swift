@@ -13,7 +13,7 @@ import NSObject_Rx
 extension MemoListViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as? CustomCell {
-            let memo = sharedInstance.readMemo()[indexPath.item]
+            let memo = sharedInstance.getMemoList()[indexPath.item]
             cell.contentLb.text = memo.content
             cell.switchBtn.isOn = memo.switchIsOn
             var attributes: [NSAttributedString.Key: Any] = [:]
@@ -26,12 +26,12 @@ extension MemoListViewController : UITableViewDelegate, UITableViewDataSource{
         return UITableViewCell()
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let thirdViewController = storyboard?.instantiateViewController(withIdentifier: "MemoDetailVC") as? MemoDetailViewController {
-            let memo = sharedInstance.readMemo()[indexPath.item]
+        if let memoDetailViewController = storyboard?.instantiateViewController(withIdentifier: "MemoDetailVC") as? MemoDetailViewController {
+            let memo = sharedInstance.getMemoList()[indexPath.item]
             selectedIndex = indexPath.item
-            originalMemo = memo
-            thirdViewController.EditDelegate = self
-            self.navigationController?.pushViewController(thirdViewController, animated: true)
+            memoDetailViewController.content = memo.content
+            memoDetailViewController.EditDelegate = self
+            self.navigationController?.pushViewController(memoDetailViewController, animated: true)
         }
     }
     
@@ -41,15 +41,12 @@ extension MemoListViewController : UITableViewDelegate, UITableViewDataSource{
             tableView.reloadData()
             completionHandler(true)
         }
-        
         deleteAction.image = UIImage(systemName: "trash")
-        
-        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-        return configuration
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sharedInstance.readMemo().count
+        return sharedInstance.getMemoList().count
     }
 }
 extension MemoListViewController : EditMemoDelegate, CreateMemoDelegate{
@@ -59,8 +56,7 @@ extension MemoListViewController : EditMemoDelegate, CreateMemoDelegate{
     }
     
     func didEditPerformd(_ content: String) {
-        guard let originalMemo = originalMemo else{return}
-        sharedInstance.updateMemo(index: selectedIndex, memo: Memo(original: originalMemo, updatedContent: content))
+        sharedInstance.updateMemo(index: selectedIndex, content: content)
         listTableView.reloadData()
     }
 }
@@ -71,16 +67,14 @@ class MemoListViewController: UIViewController {
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var listTableView: UITableView!
-    let sharedInstance = MemoManager.Instance
+    let sharedInstance = RealmManager.Instance
     var originalMemo : Memo?
     var selectedIndex : Int = 0
     @IBAction func addMemoButtonClicked(_ sender: Any) {
-        let popupViewController = UIStoryboard(name: "Main", bundle: nil)
-            .instantiateViewController(withIdentifier: "MemoAddVC") as! MemoAddViewController
-        popupViewController.modalPresentationStyle = .overCurrentContext
-        popupViewController.CreateDelegate = self
-        present(popupViewController, animated: true, completion: nil)
-        
+        let memoAddViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemoAddVC") as! MemoAddViewController
+        memoAddViewController.modalPresentationStyle = .overCurrentContext
+        memoAddViewController.CreateDelegate = self
+        present(memoAddViewController, animated: true, completion: nil)
     }
     
     @IBAction func BackbuttonClicked(_ sender: Any) {

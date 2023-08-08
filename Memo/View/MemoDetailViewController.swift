@@ -10,13 +10,18 @@ protocol EditMemoDelegate : AnyObject{
     func didEditPerformd(_ content : String)
 }
 
-class MemoDetailViewController: UIViewController {
+class MemoDetailViewController: UIViewController,UITextViewDelegate {
     
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var textView: UITextView!
+    var content = ""
     weak var EditDelegate : EditMemoDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
+        textView.delegate = self
+        if content != ""{
+            textView.text = content
+        }
     }
     
     @IBAction func editbuttonClicked(_ sender: Any) {
@@ -27,12 +32,9 @@ class MemoDetailViewController: UIViewController {
         }else{
             self.showAlert(title: "에러", message: "텍스트값이 nil입니다. 다시 시도 해주셍쇼")
         }
-        
     }
     
     @IBAction func backbuttonClicked(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
-
-
 }

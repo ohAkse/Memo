@@ -9,32 +9,26 @@ import Foundation
 import RxDataSources
 import CoreData
 import RxCoreData
-struct Memo {
-    var content: String
-    var insertDate: Date
-    var switchIsOn : Bool // isCompleted
-    //var isStrike : Bool
-    
-    
-    init(content: String, insertDate: Date = Date(), switchIsOn : Bool){
+import RealmSwift
+class Memo: Object {
+    @Persisted var content: String
+    @Persisted var insertDate: Date
+    @Persisted var switchIsOn: Bool
+    override required init() {
+        self.content = ""
+        self.insertDate = Date()
+        self.switchIsOn = false
+        super.init()
+    }
+
+    init(content: String, insertDate: Date = Date(), switchIsOn: Bool) {
         self.content = content
         self.insertDate = insertDate
         self.switchIsOn = switchIsOn
-      //  self.isStrike = isStrike
+        super.init()
     }
-    
-    
-    init(original: Memo, updatedContent: String){
-        self = original
-        self.content = updatedContent
-    }
-    
-    init(original: Memo, updatedContent: String, switchIsOn : Bool){
-        self = original
-        self.content = updatedContent
-        self.switchIsOn = switchIsOn
-        //self.isStrike = isStrike
-    }
-    
-}
 
+    convenience init(updatedContent: String, switchIsOn: Bool) {
+        self.init(content: updatedContent, switchIsOn: switchIsOn)
+    }
+}
