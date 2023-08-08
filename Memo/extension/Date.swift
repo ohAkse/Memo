@@ -9,7 +9,7 @@ import Foundation
 extension Date{    
     func GetCurrentTime() -> String{
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
         let dateString = formatter.string(from: self)
         return dateString
     }

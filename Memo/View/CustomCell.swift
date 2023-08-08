@@ -13,7 +13,7 @@ import RxDataSources
 class CustomCell: UITableViewCell {    
     @IBOutlet weak var contentLb: UILabel!
     @IBOutlet weak var switchBtn: UISwitch!
-    @IBOutlet weak var comletedText: UILabel!
+    @IBOutlet weak var dateTimeLb: UILabel!
     let sharedInstance = RealmManager.Instance
 
     override func prepareForReuse() {
@@ -29,12 +29,9 @@ class CustomCell: UITableViewCell {
         }
         if let tableView = superview as? UITableView,let indexPath = tableView.indexPath(for: self) {
             let cellIndex = indexPath.row
-            print(cellIndex)
             sharedInstance.updateMemo(index: cellIndex, isOn: sender.isOn)
         }
-        
     }
-    
 }
 
 

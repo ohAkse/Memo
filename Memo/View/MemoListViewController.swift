@@ -71,10 +71,32 @@ class MemoListViewController: UIViewController {
     var originalMemo : Memo?
     var selectedIndex : Int = 0
     @IBAction func addMemoButtonClicked(_ sender: Any) {
-        let memoAddViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemoAddVC") as! MemoAddViewController
-        memoAddViewController.modalPresentationStyle = .overCurrentContext
-        memoAddViewController.CreateDelegate = self
-        present(memoAddViewController, animated: true, completion: nil)
+// 1) 메세지박스 형식으로 쓰는 경우
+        let AddMemoController =  UIAlertController(title: "항목 추가", message: "내용을 입력해주세요.", preferredStyle: .alert)
+        AddMemoController.addTextField(configurationHandler: { _ in
+        })
+        let OKAction = UIAlertAction(title: "OK", style: .default) {  _ in
+            if let text = AddMemoController.textFields?.first?.text {
+                if text != ""{
+                    self.sharedInstance.createMemo(memo : Memo(content: text, switchIsOn: false))
+                    self.listTableView.reloadData()
+                }else{
+                    self.showAlert(title: "에러", message: "내용이 입력되지 않아 항목이 추가되지 않았습니다.")
+                }
+            }
+        }
+        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            AddMemoController.dismiss(animated: true)
+        }
+        AddMemoController.addAction(OKAction)
+        AddMemoController.addAction(CancelAction)
+        self.present(AddMemoController, animated: true)
+
+// 2) 화면전환 형식으로 쓰는 경우
+//        let memoAddViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemoAddVC") as! MemoAddViewController
+//        memoAddViewController.modalPresentationStyle = .overCurrentContext
+//        memoAddViewController.CreateDelegate = self
+//        present(memoAddViewController, animated: true, completion: nil)
     }
     
     @IBAction func BackbuttonClicked(_ sender: Any) {

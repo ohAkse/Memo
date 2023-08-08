@@ -13,15 +13,24 @@ import NSObject_Rx
 protocol CreateMemoDelegate : AnyObject{
     func didCreatePerformd(_ memo : Memo)
 }
-class MemoAddViewController: UIViewController {
+class MemoAddViewController: UIViewController,UITextViewDelegate {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var confirmButton: UIBarButtonItem!
     @IBOutlet weak var confirmButtonClicked: UINavigationItem!
     weak var CreateDelegate : CreateMemoDelegate?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        textView.delegate = self
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
     
     @IBAction func ConfirmButtonClicked(_ sender: Any) {

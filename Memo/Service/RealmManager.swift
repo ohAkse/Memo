@@ -16,14 +16,13 @@ final class RealmManager
             let realm = try Realm()
             try realm.write {
                 realm.add(memo)
-                ShowMemoListInfo()
             }
         } catch {
             print("Error saving data: \(error)")
         }
     }
     //텍스트 변경시 업데이트 용도
-    func updateMemo(index : Int, content : String){
+    func updateMemo(index : Int, content : String, updateDate : Date = Date()){
         do {
             let realm = try Realm()
             let memos = realm.objects(Memo.self)
@@ -35,15 +34,15 @@ final class RealmManager
             let memoToUpdate = memos[index]
             
             try realm.write {
-                memoToUpdate.content = content  // 텍스트 업데이트
-                print("Memo updated!")
+                memoToUpdate.content = content
+                memoToUpdate.insertDate = updateDate
             }
         } catch {
             print("Error updating memo: \(error)")
         }
     }
     //커스텀셀에서 스위치 바꼈을때 업데이트용도
-    func updateMemo(index: Int, isOn: Bool) {
+    func updateMemo(index: Int, isOn: Bool, updateDate : Date = Date()) {
         do {
             let realm = try Realm()
             let memos = realm.objects(Memo.self)
@@ -55,8 +54,8 @@ final class RealmManager
             let memoToUpdate = memos[index]
             
             try realm.write {
-                memoToUpdate.switchIsOn = isOn // 스위치 상태 업데이트
-                print("Memo updated!")
+                memoToUpdate.switchIsOn = isOn
+                memoToUpdate.insertDate = updateDate
             }
         } catch {
             print("Error updating memo: \(error)")
@@ -92,7 +91,6 @@ final class RealmManager
             return []
         }
     }
-    
     func ShowMemoListInfo(){
         do {
             let realm = try Realm()

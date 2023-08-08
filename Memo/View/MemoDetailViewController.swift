@@ -22,6 +22,19 @@ class MemoDetailViewController: UIViewController,UITextViewDelegate {
         if content != ""{
             textView.text = content
         }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
     
     @IBAction func editbuttonClicked(_ sender: Any) {

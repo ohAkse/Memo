@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dragon" translatesAutoresizingMaskIntoConstraints="NO" id="XlL-ax-iHW">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="44" translatesAutoresizingMaskIntoConstraints="NO" id="XlL-ax-iHW">
                                 <rect key="frame" x="10" y="113" width="373" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="glK-Ym-Fbk"/>
@@ -172,6 +172,18 @@
                                                 <action selector="BackButtonClicked:" destination="7eX-YD-Jc0" id="NJ9-D5-2MK"/>
                                             </connections>
                                         </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem title="오름차순" image="arrow.up" catalog="system" id="cJl-JL-thN">
+                                                <connections>
+                                                    <action selector="AscendingClicked:" destination="7eX-YD-Jc0" id="gCg-6h-2DP"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="내림차순" image="arrow.down" catalog="system" id="yfe-XO-S3p">
+                                                <connections>
+                                                    <action selector="DescendingClicked:" destination="7eX-YD-Jc0" id="E78-xP-4Xl"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -187,16 +199,24 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8YD-NJ-Ko9">
-                                                    <rect key="frame" x="20" y="0.0" width="245" height="43"/>
+                                                    <rect key="frame" x="20" y="0.0" width="245" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agg-vb-p4N">
+                                                    <rect key="frame" x="20" y="22" width="251" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="opaqueSeparatorColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="contentLb" destination="8YD-NJ-Ko9" id="ja3-AG-4sy"/>
+                                            <outlet property="dateTimeLb" destination="agg-vb-p4N" id="0Fw-Wt-KNp"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -404,9 +424,14 @@
     </scenes>
     <color key="tintColor" systemColor="systemBlueColor"/>
     <resources>
-        <image name="dragon" width="318" height="159"/>
+        <image name="44" width="259" height="194"/>
+        <image name="arrow.down" catalog="system" width="118" height="128"/>
+        <image name="arrow.up" catalog="system" width="118" height="128"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
