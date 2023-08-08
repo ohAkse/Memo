@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ue4-Tf-CtF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WNS-Ki-ncl">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment version="5376" identifier="iOS"/>
@@ -18,18 +18,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dragon" translatesAutoresizingMaskIntoConstraints="NO" id="XlL-ax-iHW">
-                                <rect key="frame" x="10" y="69" width="373" height="200"/>
+                                <rect key="frame" x="10" y="113" width="373" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="glK-Ym-Fbk"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="22f-8x-jqW">
-                                <rect key="frame" x="50" y="434" width="293" height="100"/>
+                                <rect key="frame" x="50" y="478" width="293" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="wcB-gC-01g"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="할일 작성하러 가기"/>
+                                <connections>
+                                    <action selector="MoveListButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uHY-XX-sc5"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y50-NU-ISb">
                                 <rect key="frame" x="50" y="609" width="293" height="100"/>
@@ -38,6 +41,9 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="완료페이지로 이동"/>
+                                <connections>
+                                    <action selector="MoveCompletButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tni-XW-GSr"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -62,7 +68,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1512.2137404580153" y="16.901408450704228"/>
+            <point key="canvasLocation" x="2438.9312977099235" y="16.901408450704228"/>
         </scene>
         <!--Memo List View Controller-->
         <scene sceneID="rLc-s8-0ka">
@@ -73,16 +79,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PW8-t2-JO1">
-                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="44"/>
                                 <items>
                                     <navigationItem title="메모장" id="DsD-25-G4J">
-                                        <barButtonItem key="leftBarButtonItem" title="이전" id="Pym-qS-GtO"/>
-                                        <barButtonItem key="rightBarButtonItem" title="추가" id="jJb-i2-O6W" userLabel="추가"/>
+                                        <barButtonItem key="leftBarButtonItem" title="이전" id="Pym-qS-GtO">
+                                            <connections>
+                                                <action selector="BackbuttonClicked:" destination="LhN-RC-52D" id="4uF-NY-ra8"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="추가" id="jJb-i2-O6W" userLabel="추가">
+                                            <connections>
+                                                <action selector="addMemoButtonClicked:" destination="LhN-RC-52D" id="6b5-1B-Qzp"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="DFn-yn-NAM">
-                                <rect key="frame" x="31" y="125" width="330" height="602"/>
+                                <rect key="frame" x="31" y="169" width="330" height="558"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" id="mVn-Ua-aia" userLabel="cell" customClass="CustomCell" customModule="Memo" customModuleProvider="target">
@@ -95,6 +109,9 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="omk-3A-1RJ">
                                                     <rect key="frame" x="263" y="6" width="49" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="switchValueChanged:" destination="mVn-Ua-aia" eventType="valueChanged" id="lMN-v7-Zvp"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o0w-Aa-prW">
                                                     <rect key="frame" x="20" y="6" width="227" height="27"/>
@@ -112,12 +129,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKZ-Ff-nbM">
-                                <rect key="frame" x="50" y="777" width="75" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Button"/>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BTR-ZM-fw9"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -135,15 +146,13 @@
                     <navigationItem key="navigationItem" id="kah-nh-k6T"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="addButton" destination="jJb-i2-O6W" id="gHU-Er-0Vx"/>
-                        <outlet property="backButton" destination="Pym-qS-GtO" id="ynR-f7-bgb"/>
+                        <outlet property="backButton" destination="Pym-qS-GtO" id="cHb-tB-Y5T"/>
                         <outlet property="listTableView" destination="DFn-yn-NAM" id="pbp-2J-Z7p"/>
-                        <outlet property="testButton" destination="ZKZ-Ff-nbM" id="vJg-sY-NAL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y0m-EP-vQV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3446.5648854961833" y="16.901408450704228"/>
+            <point key="canvasLocation" x="5300" y="16.901408450704228"/>
         </scene>
         <!--Memo Complete View Controller-->
         <scene sceneID="svi-em-Zca">
@@ -158,7 +167,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="완료페이지 " id="LNZ-Ok-03H">
-                                        <barButtonItem key="leftBarButtonItem" title="이전" id="74e-QQ-1Xd"/>
+                                        <barButtonItem key="leftBarButtonItem" title="이전" id="74e-QQ-1Xd">
+                                            <connections>
+                                                <action selector="BackButtonClicked:" destination="7eX-YD-Jc0" id="NJ9-D5-2MK"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -166,13 +179,25 @@
                                 <rect key="frame" x="16" y="128" width="351" height="587"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="fRR-Ch-fxq">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" id="fRR-Ch-fxq" customClass="CustomCell" customModule="Memo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="351" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fRR-Ch-fxq" id="7bG-gx-LnH">
                                             <rect key="frame" x="0.0" y="0.0" width="351" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8YD-NJ-Ko9">
+                                                    <rect key="frame" x="20" y="0.0" width="245" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contentLb" destination="8YD-NJ-Ko9" id="ja3-AG-4sy"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -186,8 +211,10 @@
                             <constraint firstItem="Adp-Oq-uo8" firstAttribute="bottom" secondItem="nYd-SA-4FU" secondAttribute="bottom" constant="103" id="xA7-PL-ybv"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="fxr-ht-mJx"/>
                     <connections>
                         <outlet property="BackButton" destination="74e-QQ-1Xd" id="3kU-rD-gTS"/>
+                        <outlet property="tableView" destination="nYd-SA-4FU" id="V9J-tL-zNN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XfP-LJ-ZUW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -206,14 +233,22 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                                 <items>
                                     <navigationItem title="메모 상세" id="bfi-AY-hbV">
-                                        <barButtonItem key="leftBarButtonItem" title="이전" id="Yx8-MM-NdC"/>
+                                        <barButtonItem key="leftBarButtonItem" title="이전" id="Yx8-MM-NdC">
+                                            <connections>
+                                                <action selector="backbuttonClicked:" destination="EtF-Dt-ZAF" id="WGv-p0-6Mi"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="수정" id="YEq-3M-fU6" userLabel="수정">
+                                            <connections>
+                                                <action selector="editbuttonClicked:" destination="EtF-Dt-ZAF" id="1G4-oK-xYh"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0mr-6j-S2n" userLabel="textView">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text=" poen legum odioque civiuda." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0mr-6j-S2n" userLabel="textView">
                                 <rect key="frame" x="16" y="118" width="361" height="533"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -239,7 +274,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EDt-Nc-Jhn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3456" y="739"/>
+            <point key="canvasLocation" x="5300" y="731"/>
         </scene>
         <!--Memo Add View Controller-->
         <scene sceneID="VsG-XC-Ndw">
@@ -254,8 +289,16 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="새 메모" id="sc1-33-dvK">
-                                        <barButtonItem key="leftBarButtonItem" title="취소" id="55s-iG-RAY"/>
-                                        <barButtonItem key="rightBarButtonItem" title="확인" id="8KK-Hb-Mut"/>
+                                        <barButtonItem key="leftBarButtonItem" title="취소" id="55s-iG-RAY">
+                                            <connections>
+                                                <action selector="CancelButtonClicked:" destination="wkf-gO-IEd" id="OjC-SD-Q6c"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="확인" id="8KK-Hb-Mut">
+                                            <connections>
+                                                <action selector="ConfirmButtonClicked:" destination="wkf-gO-IEd" id="GMT-aZ-OqL"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -281,13 +324,12 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="cancelButton" destination="55s-iG-RAY" id="oOr-bM-HpD"/>
-                        <outlet property="confirmButton" destination="8KK-Hb-Mut" id="Upz-z1-t6v"/>
                         <outlet property="textView" destination="2le-fe-BE1" id="Hx4-zu-Qy7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0T-zX-Lyk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5594.6564885496182" y="16.901408450704228"/>
+            <point key="canvasLocation" x="7448.0916030534345" y="16.901408450704228"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="iE7-5S-LwV">
@@ -305,23 +347,6 @@
             <point key="canvasLocation" x="-416" y="40"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="r9S-hG-jLx">
-            <objects>
-                <navigationController storyboardIdentifier="DefaultNavi" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="BGB-fF-0lx" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0CM-Tm-SGU">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="hC6-9d-Xfm"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pXM-Dd-t7z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="585.49618320610682" y="16.901408450704228"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="1bw-Hb-7R5">
             <objects>
                 <navigationController storyboardIdentifier="addNavi" automaticallyAdjustsScrollViewInsets="NO" id="o28-UG-TA7" sceneMemberID="viewController">
@@ -337,7 +362,44 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VFi-0s-KK2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4667.93893129771" y="16.901408450704228"/>
+            <point key="canvasLocation" x="6521.3740458015263" y="16.901408450704228"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="o0C-Xr-UrO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WNS-Ki-ncl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="2GG-Ou-knq"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pDs-Ch-pkD">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="iEP-jW-cLB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wFY-9u-22k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1512.2137404580153" y="16.901408450704228"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zm3-e3-KPB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uaz-ID-HjM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WoO-IQ-Jso">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="LhN-RC-52D" kind="relationship" relationship="rootViewController" id="thX-1K-Pxi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n3K-OY-g8x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4373.2824427480919" y="16.901408450704228"/>
         </scene>
     </scenes>
     <color key="tintColor" systemColor="systemBlueColor"/>
