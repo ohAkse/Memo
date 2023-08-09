@@ -49,12 +49,7 @@ extension MemoListViewController : UITableViewDelegate, UITableViewDataSource{
         return sharedInstance.getMemoList().count
     }
 }
-extension MemoListViewController : EditMemoDelegate, CreateMemoDelegate{
-    func didCreatePerformd(_ memo: Memo) {
-        sharedInstance.createMemo(memo: memo)
-        listTableView.reloadData()
-    }
-    
+extension MemoListViewController : EditMemoDelegate{
     func didEditPerformd(_ content: String) {
         sharedInstance.updateMemo(index: selectedIndex, content: content)
         listTableView.reloadData()
@@ -68,10 +63,8 @@ class MemoListViewController: UIViewController {
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var listTableView: UITableView!
     let sharedInstance = RealmManager.Instance
-    var originalMemo : Memo?
     var selectedIndex : Int = 0
     @IBAction func addMemoButtonClicked(_ sender: Any) {
-// 1) 메세지박스 형식으로 쓰는 경우
         let AddMemoController =  UIAlertController(title: "항목 추가", message: "내용을 입력해주세요.", preferredStyle: .alert)
         AddMemoController.addTextField(configurationHandler: { _ in
         })
@@ -91,12 +84,6 @@ class MemoListViewController: UIViewController {
         AddMemoController.addAction(OKAction)
         AddMemoController.addAction(CancelAction)
         self.present(AddMemoController, animated: true)
-
-// 2) 화면전환 형식으로 쓰는 경우
-//        let memoAddViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemoAddVC") as! MemoAddViewController
-//        memoAddViewController.modalPresentationStyle = .overCurrentContext
-//        memoAddViewController.CreateDelegate = self
-//        present(memoAddViewController, animated: true, completion: nil)
     }
     
     @IBAction func BackbuttonClicked(_ sender: Any) {

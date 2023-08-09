@@ -15,16 +15,14 @@ class DefaultViewController: UIViewController {
   
     @IBAction func MoveCompletButtonClicked(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-          if let nextViewController = storyboard.instantiateViewController(withIdentifier: "MemoCompleteVC") as? MemoCompleteViewController {
-              self.navigationController?.navigationBar.isHidden = true
-              self.navigationController?.pushViewController(nextViewController, animated: true)
+          if let memoCompleteVC = storyboard.instantiateViewController(withIdentifier: "MemoCompleteVC") as? MemoCompleteViewController {
+              self.navigationController?.pushViewController(memoCompleteVC, animated: true)
           }
     }
     @IBAction func MoveListButtonClicked(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-          if let nextViewController = storyboard.instantiateViewController(withIdentifier: "MemoListVC") as? MemoListViewController {
-              self.navigationController?.navigationBar.isHidden = true
-              self.navigationController?.pushViewController(nextViewController, animated: true)
+          if let memoListVC = storyboard.instantiateViewController(withIdentifier: "MemoListVC") as? MemoListViewController {
+              self.navigationController?.pushViewController(memoListVC, animated: true)
           }
     }
     override func viewDidLoad() {
