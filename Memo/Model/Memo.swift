@@ -6,9 +6,6 @@
 //
 
 import Foundation
-import RxDataSources
-import CoreData
-import RxCoreData
 import RealmSwift
 class Memo: Object {
     @Persisted var content: String

@@ -6,9 +6,7 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
-import RxDataSources
+
 class DefaultViewController: UIViewController {
     @IBOutlet weak var memoListButton: UIButton!
     @IBOutlet weak var memoCompleteButton: UIButton!

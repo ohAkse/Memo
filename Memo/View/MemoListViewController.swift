@@ -6,9 +6,6 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
-import NSObject_Rx
 
 extension MemoListViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

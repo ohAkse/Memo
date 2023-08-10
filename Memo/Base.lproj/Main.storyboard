@@ -86,7 +86,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PW8-t2-JO1">
                                 <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                                 <items>
-                                    <navigationItem title="메모장" id="DsD-25-G4J">
+                                    <navigationItem title="할일 작성" id="DsD-25-G4J">
                                         <barButtonItem key="leftBarButtonItem" title="이전" id="Pym-qS-GtO">
                                             <connections>
                                                 <action selector="BackbuttonClicked:" destination="LhN-RC-52D" id="4uF-NY-ra8"/>
@@ -277,7 +277,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U3b-v2-ul1">
                                 <rect key="frame" x="0.0" y="59" width="393" height="59"/>
                                 <items>
-                                    <navigationItem title="메모 상세" id="bfi-AY-hbV">
+                                    <navigationItem title="상세 페이지" id="bfi-AY-hbV">
                                         <barButtonItem key="leftBarButtonItem" title="이전" id="Yx8-MM-NdC">
                                             <connections>
                                                 <action selector="backbuttonClicked:" destination="EtF-Dt-ZAF" id="WGv-p0-6Mi"/>

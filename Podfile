@@ -6,11 +6,4 @@ target 'Memo' do
   use_frameworks!
 
   # Pods for Memo
-  pod "RxCoreData", "~> 1.0.0"
-  pod 'RxSwift'
-  pod 'RxCocoa'
-  pod 'Action'
-  pod 'NSObject+Rx' 
-  pod 'RxDataSources'
-  pod 'RxCoreData'
 end
